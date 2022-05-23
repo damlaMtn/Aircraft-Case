@@ -991,13 +991,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 307868778}
-  forwardSpeed: 15
-  horizontalSpeed: 4
-  verticalSpeed: 4
-  smoothness: 5
-  rotationSmoothness: 5
-  maxHorizontalRotation: 0.1
-  maxVerticalRotation: 0.06
+  flySpeed: 50
+  yawAmount: 60
 --- !u!54 &1204976848
 Rigidbody:
   m_ObjectHideFlags: 0
