@@ -4,11 +4,54 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform plane;
+    //public Transform plane;
+    [SerializeField]
     public Vector3 cameraOffset;
 
-    void Update()
+    [SerializeField]
+    private Transform target;
+
+    //[SerializeField]
+    //private Vector3 offsetPosition;
+
+    [SerializeField]
+    private Space offsetPositionSpace = Space.Self;
+
+    [SerializeField]
+    private bool lookAt = true;
+
+    private void Update()
     {
-        transform.position = plane.position + cameraOffset;
+        Refresh();
+    }
+
+    public void Refresh()
+    {
+        if (target == null)
+        {
+            Debug.LogWarning("Missing target ref !", this);
+
+            return;
+        }
+
+        // compute position
+        if (offsetPositionSpace == Space.Self)
+        {
+            transform.position = target.TransformPoint(cameraOffset);
+        }
+        else
+        {
+            transform.position = target.position + cameraOffset;
+        }
+
+        // compute rotation
+        if (lookAt)
+        {
+            transform.LookAt(target);
+        }
+        else
+        {
+            transform.rotation = target.rotation;
+        }
     }
 }
